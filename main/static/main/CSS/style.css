@@ -1,0 +1,14 @@
+.helptext {
+  visibility: hidden;
+}
+
+#log-in-email input {
+  margin-left: 28px;
+  width: 359px;
+}
+#log-in-pass {
+  margin-top: 28px;
+}
+#log-in-pass input {
+  width: 357px;
+}

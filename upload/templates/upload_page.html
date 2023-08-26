@@ -1,0 +1,84 @@
+{%load static%}
+{% include 'base.html'%}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/styles/default.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ace.js"></script>
+<!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+<!-- <div id="myDiv"></div> -->
+
+
+<link rel="stylesheet" href="{%static '/upload/CSS/style.css'%}" />
+
+
+    
+    <div id="upload" class="container">
+        
+        <form method="post" enctype="multipart/form-data" id="upload-form">
+            {% csrf_token %}
+            <div style="display: flex; flex-direction: column;">
+                <input type="file" name="file" id="id_file">
+                <button type="button" id="upload-btn" disabled data-url="{% url 'upload_file' %}">Upload</button>
+            </div>
+            <p id="error-msg" style="color: red; display: none;">Invalid file format. Only .py files allowed.</p>
+        </form>
+        <div id="result-message"></div>
+    </div>
+
+    
+<div class="container" id="upload-page-conatiner">
+
+
+    <div id="list-of-files">
+        <h3>
+            list of files
+        </h3>
+        <hr style="z-index: 9999;">
+        <div id="files">
+            {%for file in list_of_files%}
+            <button class="file-button" data-file-id="{{ file.id }}">
+                {{file.name}}
+            </button>
+            {%endfor%}
+        </div>
+    </div>
+    <div id="file-content-area">
+        <div id="file-content-top">
+            <h3>File content</h3>
+            <div id="file-detail">
+                <!-- <button>edit</button>
+                <button>delete</button> -->
+            </div>
+        </div>
+        <div id="content">
+            <pre><code class="python" id="file-content">
+                
+                
+                <!-- {{code_content|safe}} -->
+                </code></pre>
+        </div>
+    </div>
+
+    <div id="delete-confirm-modal" class="modal">
+        <div class="modal-content">
+            <p>Действительно ли вы хотите удалить файл?</p>
+            <button class="confirm-delete-button">Да</button>
+            <button class="cancel-delete-button">Отмена</button>
+        </div>
+    </div>
+    
+</div> 
+<div id="file-content>"></div>
+
+
+<script src="{%static '/upload/JS/scripts.js'%}"></script>
+
+<!-- <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Получаем ссылку на элемент div
+        var myDiv = document.getElementsByClassName("hljs-number");
+        $('.hljs-number').hide()
+        // Добавляем HTML-контент внутрь div
+        // myDiv.innerHTML = '<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>';
+    });
+</script> -->

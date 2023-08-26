@@ -1,0 +1,21 @@
+{%include 'base.html'%} {%load static%}
+<link rel="stylesheet" href="{%static '/code_logs/CSS/styles.css'%}" />
+<div class="container" id="logs-page">
+  <div id="list-of-files">
+    <h3>Files</h3>
+    <div id="files">
+      {%for file in list_of_files%}
+      <button class="show-log-button" data-id="{{file.id}}">
+        {{file.name}}
+      </button>
+      {%endfor%}
+    </div>
+  </div>
+  <div id="logs-area">
+    <div id="logs-content" style="display: flex">
+      <h3>Logs</h3>
+      <div id="logs"></div>
+    </div>
+  </div>
+</div>
+<script src="{%static '/code_logs/JS/scripts.js'%}"></script>

@@ -1,0 +1,45 @@
+#logs-page {
+  display: flex;
+  margin-top: 40px;
+  justify-content: space-around;
+  height: 85%;
+}
+#list-of-files {
+  border-radius: 20px;
+  border-style: solid;
+  width: 363px;
+  display: flex;
+  height: 88%;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+  overflow: auto;
+}
+#list-of-files button {
+  margin-top: 15px;
+  width: 100%;
+}
+#files {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  flex-direction: column;
+}
+#logs-area {
+  width: 670px;
+  height: 88%;
+  display: flex;
+  justify-content: center;
+  border-style: solid;
+  border-radius: 20px;
+}
+#logs-area h3 {
+  display: flex;
+  justify-content: center;
+}
+#logs-content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}

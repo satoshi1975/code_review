@@ -1,0 +1,179 @@
+{%load static%}
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="{%static '/main/CSS/bootstrap.css'%}" />
+    <link rel="stylesheet" href="{%static '/main/CSS/style.css'%}" />
+    
+  </head>
+  <body>
+      <header class="p-3 bg-dark text-white">
+          <div class="">
+        <div
+          class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start"
+        >
+          <a
+            href="/"
+            class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none"
+          >
+            <svg
+              class="bi me-2"
+              width="40"
+              height="32"
+              role="img"
+              aria-label="Bootstrap"
+            >
+              <use xlink:href="#bootstrap" />
+            </svg>
+          </a>
+
+          <ul id="#nav"
+            class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0"
+          >
+            {%if user.is_authenticated%}
+            <li><a href="{%url 'upload_page'%}" class="nav-link px-2 text-white">Upload code</a></li>
+            <li><a href="/logs/{{user.id}}" class="nav-link px-2 text-white">Logs</a></li>
+            {%else%}
+            <li><a href="{%url 'upload_page'%}" class="nav-link px-2 text-white dis">Upload code</a></li>
+            <li><a href="/logs/{{user.id}}" class="nav-link px-2 text-white dis">Logs</a></li>
+            {%endif%}
+          </ul>
+
+          {%if user.is_authenticated%}
+          <div class="text-end">
+            <a href="{%url 'log_out'%}" type="button" class="btn btn-outline-light me-2">
+              log_out
+            </a>
+            
+            
+          </div>
+          {%else%}
+          <div class="text-end">
+            <button type="button" 
+            class="btn btn-outline-light me-2" 
+            data-bs-toggle="modal"
+            data-bs-target="#staticBackdropLogIn">
+              Login
+            </button>
+            <button
+              type="button"
+              class="btn btn-warning"
+              data-bs-toggle="modal"
+              data-bs-target="#staticBackdrop"
+            >
+              Sign-up
+            </button>
+          </div>
+          {%endif%}
+        </div>
+      </div>
+    </header>
+
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="staticBackdrop"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+      tabindex="-1"
+      aria-labelledby="staticBackdropLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="staticBackdropLabel">
+              Modal title
+            </h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <div id="error-message"></div>
+            <hr>
+            <form method="post" id="sign-up-form">
+                {%csrf_token%}
+                {{sign_up_form.as_p}}
+            
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+              
+            </button>
+            <button type="submit" id="sign-up-btn" data-url="{%url 'sign_up'%}" class="btn btn-primary">sign up</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="modal fade"
+      id="staticBackdropLogIn"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+      tabindex="-1"
+      aria-labelledby="staticBackdropLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="staticBackdropLabel">
+              Modal title
+            </h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <div id="error-message"></div>
+            <hr>
+            <form method="post" id="log-in-form">
+                {%csrf_token%}
+                <div id="log-in-email">
+                  {{ log_in_form.email.label_tag }} {{ log_in_form.email }}
+                </div>
+                <div id="log-in-pass">
+                  {{ log_in_form.password.label_tag }} {{ log_in_form.password }}
+                </div>
+            
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+              
+            </button>
+            <button type="submit" id="log-in-btn" data-url="{%url 'log_in'%}" class="btn btn-primary">sign up</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+</body>
+</html>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="{%static '/main/JS/bootstrap.js'%}"></script>
+<script src="{%static '/main/JS/scripts.js'%}"></script>
+<script>hljs.initHighlightingOnLoad();</script>

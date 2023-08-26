@@ -1,0 +1,48 @@
+{%include 'base.html'%}
+{%load static%}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/styles/default.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ace.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ace.js"></script>
+<link rel="stylesheet" href="{%static '/upload/CSS/style.css'%}" />
+
+<div id="edit-area">
+
+</div>
+<button id="save-button">save</button>
+<div hidden id="hidden-data" data-file-id="{{file_id}}"></div>
+
+<script>
+    $(document).ready(function(){
+        // Создаем Ace Editor внутри <div id="edit-area">
+        var initialText = "{{ code|escapejs }}";
+        var editor = ace.edit("edit-area");
+        editor.setTheme("ace/theme/monokai");
+        editor.getSession().setMode("ace/mode/python");
+        editor.setValue(initialText);
+        // Установка размера шрифта
+        editor.setFontSize("14px");
+
+        // Обработчик события для сохранения изменений
+        $("#save-button").click(function() {
+            var editedText = editor.getValue();
+            var fileId = $("#hidden-data").data("file-id");
+            $.ajax({
+                url: "/files/save_file/", // Замените на ваш URL для сохранения файла
+                type: "POST",
+                data: { content: editedText,file_id:fileId },
+                success: function(data) {
+                    $("#save-button").css("background-color", "#00e300");
+                    console.log("Файл сохранен:", data);
+                },
+                error: function(xhr, status, error) {
+                    alert("Error"+error)
+                    console.error("Ошибка при сохранении файла:", error);
+                }
+            });
+        });
+    });
+</script>
+
+<script src="{%static '/upload/JS/scripts.js'%}"></script>

@@ -1,0 +1,85 @@
+#upload-page-conatiner {
+  display: flex;
+  justify-content: space-around;
+  top: 30px;
+  position: relative;
+  height: 80%;
+}
+#list-of-files {
+  width: 23%;
+  display: flex;
+  justify-content: flex-start;
+  border-style: solid;
+  border-radius: 20px;
+  flex-direction: column;
+  align-items: center;
+}
+#file-content-area {
+  width: 63%;
+  overflow: auto;
+  border-style: solid;
+  border-radius: 20px;
+}
+#file-content {
+  position: absolute;
+  width: 60%;
+  height: 91%;
+  overflow: auto;
+}
+#upload {
+  width: 40%;
+  position: relative;
+  top: 20px;
+}
+.hljs-number {
+  display: none;
+}
+#files {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+#file-content-top {
+  display: flex;
+  justify-content: space-between;
+}
+#file-detail {
+  display: flex;
+  margin-right: 24px;
+}
+#file-detail button {
+  margin-bottom: 16px;
+  background-color: red;
+  border-radius: 20px;
+  font-family: monospace;
+}
+#file-detail a {
+  margin-right: 20px;
+  background-color: wheat;
+  height: 44px;
+  display: flex;
+  align-content: center;
+  flex-wrap: wrap;
+  text-decoration: blink;
+  border-radius: 20px;
+  justify-content: center;
+  width: 100px;
+  color: black;
+}
+/* EDIT PAGE */
+#edit-area {
+  height: 68%;
+  border-style: solid;
+  margin-left: 100px;
+  margin-right: 100px;
+  margin-top: 100px;
+  margin-bottom: 100px;
+}
+#save-button {
+  margin-left: 47%;
+  bottom: 49px;
+  position: relative;
+  border-radius: 20px;
+  width: 83px;
+  height: 41px;
+}
